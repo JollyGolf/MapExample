@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { MapServiceService } from '../map-service.service';
+import { MapServiceService } from '../../map-service.service';
 
 @Component({
   selector: 'app-home',
