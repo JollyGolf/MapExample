@@ -1,14 +1,13 @@
-<ion-header>
+<ion-header *ngIf="lat">
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      <div *ngIf="lat || long">Карта</div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <!-- <div *ngIf="!lat || !long">Не считалась геолокация текущая</div> -->
+  <item-map class="map-1" appId="APP-ID-HERE" appCode="APP-CODE-HERE"></item-map>
+  <!-- <use-map class="map-2"></use-map> -->
 </ion-content>
