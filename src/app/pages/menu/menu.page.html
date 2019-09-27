@@ -1,0 +1,46 @@
+<ion-split-pane>
+  <ion-menu contentId="page">
+    <ion-header>
+      <menu-header></menu-header>
+    </ion-header>
+    <ion-content>
+      <div class="main" slot="fixed">
+        <ion-list class="list">
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="item" routerLink="/menu/select-car" routerDirection="root">
+              <div class="content" >
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28.148" height="24.433" viewBox="0 0 28.148 24.433"><defs><style>.a{fill:#fea01c;}</style></defs><g transform="translate(0 -3.131)"><path class="a" d="M22.705,9.962V6.809A3.655,3.655,0,0,0,19.06,3.131H9.12A3.683,3.683,0,0,0,5.442,6.809V9.961H1.6a1.6,1.6,0,0,0-1.6,1.6v3.48a1.6,1.6,0,0,0,1.6,1.6h.477L3.827,26.25A1.6,1.6,0,0,0,5.4,27.564H22.78a1.6,1.6,0,0,0,1.575-1.314L26.1,16.642h.445a1.6,1.6,0,0,0,1.6-1.6v-3.48a1.6,1.6,0,0,0-1.6-1.6ZM8.407,6.809A.723.723,0,0,1,9.12,6.1h9.941a.7.7,0,0,1,.68.713V9.961H8.407Zm2.214,15.034a1.107,1.107,0,1,1-2.214,0V15.73a1.107,1.107,0,1,1,2.214,0Zm4.579,0a1.107,1.107,0,1,1-2.215,0V15.73a1.107,1.107,0,1,1,2.215,0Zm4.579,0a1.107,1.107,0,1,1-2.214,0V15.73a1.107,1.107,0,1,1,2.214,0Z"/></g></svg>
+                <p class="title">Корзина</p>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="item" routerLink="/menu/my-orders" routerDirection="root">
+              <div class="content" >
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="30.84" height="26.985" viewBox="0 0 30.84 26.985"><defs><style>.a{fill:#fea01c;}</style></defs><path class="a" d="M17.348,32.222A13.5,13.5,0,0,0,4.009,43.787H0l5.783,5.783,5.783-5.783H7.9a9.635,9.635,0,1,1,1.616,7.554L6.392,53.592a13.493,13.493,0,1,0,10.955-21.37Z" transform="translate(0 -32.222)"/><path class="a" d="M257.778,161.111v7.838l5.754,3.452,1.984-3.305-3.883-2.33v-5.655Z" transform="translate(-242.358 -153.401)"/></svg>
+                <p class="title">Заказы</p>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item class="item" routerLink="/menu/homee" routerDirection="root">
+              <div class="content" >
+                  <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="21.5" height="25.578" viewBox="0 0 21.5 25.578"><defs><style>.a{fill:#fea01c;}</style></defs><g transform="translate(0)"><ellipse class="a" cx="5.931" cy="5.931" rx="5.931" ry="5.931" transform="translate(4.819)"/><path class="a" d="M31.375,150a10.75,10.75,0,0,0-10.75,10.75h21.5A10.75,10.75,0,0,0,31.375,150Z" transform="translate(-20.625 -135.172)"/></g></svg>
+                <p class="title">Профиль</p>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-menu-toggle auto-hide="false" class="help" >
+          <ion-item class="item" routerLink="/menu/help" routerDirection="root">
+            <div class="content">
+              <p class="title">Справка и поддержка </p>
+            </div>
+          </ion-item>
+        </ion-menu-toggle>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="page" main> </ion-router-outlet>
+</ion-split-pane>

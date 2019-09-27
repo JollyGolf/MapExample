@@ -9,15 +9,30 @@ declare var L: any;
 export class MapServiceService {
   constructor() { }
   currentPosition: any;
+  lat: any;
+  lng: any;
+  address: any;
   geocoder = L.Control.Geocoder.nominatim();
 
   createMap(mapElement: any){
+    // this.setCurrentPosition(lat);
+    if(this.lat && this.lng){ console.log('now you here =>', this.lat, this.lng); }
+    else { 
+      this.lat = 50.9;
+      this.lng = 34.8;
+    }
     return L.map(mapElement.nativeElement, {
-      center: [50.9, 34.8],
+      center: [this.lat, this.lng],
       zoom: 13,        
       layers: [L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}")],
       zoomControl: true
     });
+  }
+
+  setCurrentPosition(lat, lng){
+    console.log('setter => ', lat, lng);
+    this.lat = lat;
+    this.lng = lng;
   }
 
   setDefaultIcon(name: string, width: number, height: number){
@@ -35,6 +50,9 @@ export class MapServiceService {
     let marker = L.marker([lat, long], {icon: icon == 'default' ? iconDefault : null, draggable: unicName == 'default-icon' ? 'true' : null});
     markerList && markerList[unicName] ? this.removeMarker(map, marker, unicName, markerList) : null;
     markerList[unicName] = marker;
+    // if(unicName == 'default-icon'){
+      
+    // }
     marker.on('moveend', () => {
       let coords = marker.getLatLng();
       this.geocoder.reverse({lat: coords.lat, lng: coords.lng}, 13, r => {
@@ -44,7 +62,8 @@ export class MapServiceService {
           ? this.currentPosition = {
             lat: r[0].center.lat, 
             long: r[0].center.lng, 
-            address: r[0]} 
+            address: r[0],
+            r: r[0]} 
           : null;
       });
     });
@@ -62,10 +81,10 @@ export class MapServiceService {
   // }
 
   checkAddressAtHouseNumber(add: any, unicName: string){
-    if (add.properties.address['house_number']) return `Доставим сюда - ${add.properties.address.road}, ${add.properties.address.house_number}, ${add.properties.address.city}`
+    if (add.properties.address['house_number']) return `${add.properties.address.road}, ${add.properties.address.house_number}, ${add.properties.address.city}`
     else {
-      if (add.name.split('Сумы')[0] == '') return `Адресс не определился, но мы доставим прямо в эту точку!`;
-      else return `Доставим сюда - ${add.name.split('Сумы')[0]} Сумы`;
+      if (add.name.split('Сумы')[0] == '') return `Адресс не определился, но мы доставим прямо в точку!`;
+      else return `${add.name.split('Сумы')[0]} Сумы`;
     } 
   }
 

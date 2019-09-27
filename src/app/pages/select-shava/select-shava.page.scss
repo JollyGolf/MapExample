@@ -1,0 +1,117 @@
+@mixin flex($direction, $align, $justify){
+  display: flex;
+  @if $direction { flex-direction: $direction; }
+  @if $align { align-items: $align; }
+  @if $justify { justify-content: $justify; }
+}
+@mixin font($weight, $size, $color){
+  font-family: 'Montserrat';
+  @if $weight { font-weight: $weight; }
+  @if $size { font-size: $size; }
+  @if $color { color: $color }
+}
+
+.select-shava {
+    // @include flex(column, center, false);
+    .custom-slider{
+    position: relative;
+    .slide-back {
+        position: absolute;
+        left: 20px;
+        top: 175px;
+        ion-icon{ font-size: 24pt;}
+        z-index: 30;
+    }
+    .slide-forward {
+        position: absolute;
+        top: 175px;
+        right: 20px;
+        ion-icon{ font-size: 24pt;}
+        z-index: 30;
+    }
+    .slider-wrapper {
+        z-index: 20;
+        .slide-item {
+            margin-top: 20px;
+            position: relative;
+            min-height: 350px;
+            width: 90%;
+            @include flex(column, center, space-between);
+            .title-shava {
+                position: absolute;
+                top: 0;
+                @include font(700, 15pt, #3A1E02);
+            }
+            .desc-shava {
+                margin-top: -25px;
+                @include font(400, 9pt, #3A1E02);
+            }
+            .weight-shava {
+                @include font(400, 10pt, #3A1E02);
+            }
+        }
+    }
+    }
+    .wrapper-for-details {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        @include flex(row, center, space-between);
+        .detail-count {
+            margin: 30px 10px 10px 10px;
+            width: 50%;
+            @include flex(column, center, false);
+            .title {
+              @include font(800, 9pt, #3A1E02)
+            }
+            .forming-count {
+                width: 100%;
+                margin: 15px 0px 15px 0px;
+                @include flex(row, center, space-around);
+                .count-control {
+                    // position: relative;
+                    @include flex(row, center, center);
+                    .control-bg {
+                        background: #F5F5F5;
+                        position: absolute;
+                        z-index: 10;
+                        padding: 20px;
+                        border-radius: 10px;
+                    }
+                    .control-content {
+                        position: absolute;
+                        z-index: 11;
+                        @include font(800, 30pt, #B3B3B3);
+                    }
+                }
+                .count-value {
+                  @include font(800, 22pt, #3A1E02);
+                }
+            }
+        }
+        .detail-price {
+            margin: 30px 10px 10px 10px;
+            width: 50%;
+            @include flex(column, center, space-around);
+            .title {
+              @include font(800, 9pt, #3A1E02);
+            }
+            .price-value {
+              margin: 15px 0px 15px 0px;
+              @include font(700, 22pt, #6B9E50);
+            }
+        }
+    }
+    .want-button {
+        width: 90%;
+        margin: 0px 5% 20px 5%;
+        --background: linear-gradient(180deg, #FEC253, #FF8800);
+        --background-activated:  #FF8800; 
+        --border-radius: 30pt;
+        border-radius: 30px;
+        height: 66px;
+        box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.14);
+        @include font(700, 22pt, whtie);
+
+    }
+}

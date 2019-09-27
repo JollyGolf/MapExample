@@ -1,3 +1,6 @@
+@import '../theme/fonts.scss';
+
+
 .lll {
   display: flex;
   justify-content: center;
@@ -10,4 +13,169 @@
 
 // .ccc {
 //   background-color: red;
+// }
+
+@import '../theme/fonts.scss';
+p{
+    margin: 0;
+}
+p,span,label,h2,h1,h3,h4{
+    font-family: 'J Regular';
+}
+.header-md::after{
+    background-image: none;
+}
+ion-content{
+    --background: var(--app-custom-white);
+    overflow: scroll;
+}
+.item{
+    --background: var(--app-custom-white);
+    --border-color: var(--app-custom-white);
+}
+.list{
+    background: var(--app-custom-white);
+}
+.inner-scroll{
+    background: #fcfbfb;
+}
+.yellow-button{
+    --background: linear-gradient(to bottom, var(--app-custom-yelow-start) 0%, var(--app-custom-yelow-end) 100%);
+}
+.grey-button{
+    --background: var(--app-custom-button-grey);
+}
+.yellow-button,
+.grey-button{
+    font-family: J Bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    height: 50px;
+    width: 260px;
+    --border-radius: 15px;
+    --box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+}
+.grey-input{
+    border-bottom: 1px solid var(--app-custom-border-grey);
+    --padding-bottom: 15px;
+    --padding-top: 35px;
+    --placeholder-color: var(--app-custom-placeholder);
+    font-family: J Regular;
+    font-size: 16px;
+}
+.yellow-item{
+    border: 2px solid var(--app-custom-yelow-middle);
+    height: 45px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+
+    ion-datetime{
+        padding: 0;
+        font-family: J Regular;
+        font-size: 16px;
+    }
+}
+//spinner
+.loading-wrapper{
+    border: 1px solid var(--app-custom-yelow-end);
+    border-radius: 15px !important;
+    .loading-content{
+        font-family: J Light;
+        color: --app-custom-button-grey;
+        font-size: 15px;
+    }
+}
+//alert
+.alert-wrapper{
+    border-radius: 15px !important;
+    .alert-head{
+        font-family: J Bold;
+        font-size: 18px;
+    }
+    .alert-message{
+        font-family: J Regular;
+        font-size: 15px;
+    }
+    .alert-button-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        .alert-button{
+            
+            text-transform: uppercase;
+            min-height: 50px;
+            height: fit-content;
+            width: 90%;
+            background: linear-gradient(to bottom, var(--app-custom-yelow-start) 0%, var(--app-custom-yelow-end) 100%);
+            font-size: 16px;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            margin: 5px 0;
+            box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+            span{
+                font-family: J Bold;
+                justify-content: center;
+                word-wrap: normal;
+                overflow: hidden;
+            }
+        }
+    }
+}
+//popover{
+.popover-content{
+    border-radius: 15px !important;
+    border: 2px solid var(--app-custom-yelow-middle);
+    ion-list{
+        padding: 0;
+        margin-bottom: 0px;
+        ion-radio{
+            --color-checked: var(--app-custom-yelow-start);
+        }
+        ion-item {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid var(--app-custom-yelow-middle);
+          --app-custom-white: white;
+          ion-label {
+            font-family: J Regular !important;
+          }
+        }
+    }
+}
+.header-md::after {
+  content: none;
+}
+//picker
+.picker-wrapper{
+    width: 90% !important;
+    border-radius: 15px !important;
+    .picker-button{
+        color: var(--app-custom-yelow-end);
+    }
+    .picker-opt-selected{
+        color: var(--app-custom-yelow-end);
+    }
+}    
+
+//ion-select
+ion-select {
+    --ion-font-family: J Regular;
+}
+
+ion-item {
+  // border-color: transparent;
+  // outline: none;
+  // --border: none;
+  // --outline: none;
+  // --inner-border-width: 0px 0px 0px 0px;
+}
+
+// ion-slides {
+//     .swiper-pagination {
+//         display: none !important;
+//     }
 // }

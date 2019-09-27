@@ -1,0 +1,49 @@
+.toolbar{
+    --border-width: 0;
+    --background: #FEA01C;
+    padding-top: 0px;
+    &:last-child{
+        --border-width: 0;
+    }
+
+    .start{
+        margin-inline-start: 0px;
+        .menu-button{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: var(--app-custom-yelow-middle);
+            border-radius: 0 15px 15px 0;
+            width: 50px;
+            height: 40px;
+            padding-right: 10px;
+            .a{
+                fill: #fff !important
+            }
+        }
+        .back-button {
+            font-size: 13pt;
+            color: black;
+        }
+    }
+    .header-ios ion-toolbar:last-child{
+        border-width: none;
+    }
+    .notify{
+        display: block;
+        padding: 10px 20px 0;
+    }
+    .title{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        color: white;
+        font-size: 15pt;
+    }
+}
+
+
+

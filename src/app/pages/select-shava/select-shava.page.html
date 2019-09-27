@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <header></header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="select-shava">
+  <div class="custom-slider">
+    <ion-slides (ionSlideTap)="slideTap($event)" [options]="slideOpts" class="slider-wrapper">
+      <ion-slide class="slide-item">
+        <div class="title-shava">Шаурма такая-то 1</div>
+        <img class="image-shava" src="../../../assets/icon/Kebab.png">
+        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
+        <div class="weight-shava">600г</div>
+      </ion-slide> 
+      <ion-slide class="slide-item">
+        <div class="title-shava">Шаурма такая-то 2</div>
+        <img class="image-shava" src="../../../assets/icon/Kebab.png">
+        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
+        <div class="weight-shava">300г</div>
+      </ion-slide>
+      <ion-slide class="slide-item">
+        <div class="title-shava">Шаурма такая-то 3</div>
+        <img class="image-shava" src="../../../assets/icon/Kebab.png">
+        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
+        <div class="weight-shava">400г</div>
+      </ion-slide>
+    </ion-slides>
+    <div class="slide-back" (click)="slideBack()"><ion-icon name="ios-arrow-back"></ion-icon></div>
+    <div class="slide-forward" (click)="slideForward()"><ion-icon name="ios-arrow-forward"></ion-icon></div>
+  </div>
+  
+  <div class="wrapper-for-details">
+    <div class="detail-count">
+      <div class="title">Количество:</div>
+      <div class="forming-count">
+        <div class="count-control" (click)="generateCount('-')">
+          <div class="control-bg"></div>
+          <div class="control-content">-</div>
+        </div>
+        <div class="count-value">{{counter}}</div>
+        <div class="count-control" (click)="generateCount('+')">
+          <div class="control-bg"></div>
+          <div class="control-content">+</div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-price">
+      <div class="title">Цена с доставкой:</div>
+      <div class="price-value">{{price}} грн</div>
+    </div>
+  </div>
+  <ion-button (click)="nextStep()" class="want-button" disabled="{{!counter ? 'true' : 'false'}}">Хочу эту шаву</ion-button>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-toolbar class="toolbar">
+  <ion-buttons slot="start" class="start">
+    <ion-menu-toggle auto-hide="false" class="menu-button" *ngIf="showMenu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22.948" height="23.905" viewBox="0 0 22.948 23.905">
+        <defs>
+          <style>
+            .a {
+              fill: #fff;
+            }
+          </style>
+        </defs>
+        <g transform="translate(0 0)">
+          <path class="a"
+            d="M22.207,1.75H.742A.743.743,0,0,0,0,2.492v3.3a.743.743,0,0,0,.742.742H22.207a.743.743,0,0,0,.742-.742v-3.3A.742.742,0,0,0,22.207,1.75Z"
+            transform="translate(0 -1.75)" />
+          <path class="a"
+            d="M22.207,36.75H.742A.743.743,0,0,0,0,37.492v3.3a.743.743,0,0,0,.742.742H22.207a.743.743,0,0,0,.742-.742v-3.3A.742.742,0,0,0,22.207,36.75Z"
+            transform="translate(0 -27.187)" />
+          <path class="a"
+            d="M22.207,71.75H.742A.743.743,0,0,0,0,72.492v3.3a.743.743,0,0,0,.742.742H22.207a.743.743,0,0,0,.742-.742v-3.3A.742.742,0,0,0,22.207,71.75Z"
+            transform="translate(0 -52.625)" />
+        </g>
+      </svg>
+    </ion-menu-toggle>
+  <!-- <ion-button *ngIf="showBackButton" color="black" (click)="goBack()" class="back-button">
+    <ion-icon name="arrow-back"></ion-icon>
+  </ion-button> -->
+  </ion-buttons>
+  <p class="title">
+    {{title}}
+  </p>
+</ion-toolbar>
