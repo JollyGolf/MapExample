@@ -1,5 +1,6 @@
 import { Injectable, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 declare var L: any;
 
@@ -7,7 +8,7 @@ declare var L: any;
   providedIn: 'root'
 })
 export class MapServiceService {
-  constructor() { }
+  constructor() { }  
   currentPosition: any;
   lat: any;
   lng: any;
@@ -15,7 +16,6 @@ export class MapServiceService {
   geocoder = L.Control.Geocoder.nominatim();
 
   createMap(mapElement: any){
-    // this.setCurrentPosition(lat);
     if(this.lat && this.lng){ console.log('now you here =>', this.lat, this.lng); }
     else { 
       this.lat = 50.9;
@@ -27,6 +27,32 @@ export class MapServiceService {
       layers: [L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}")],
       zoomControl: true
     });
+  }
+
+  async getLatLngFromAddress(address: string){
+    const provider = new OpenStreetMapProvider();
+    return await provider.search({ query: address });
+  }
+
+  addControlGeocoding(map: any){
+    let provider = new OpenStreetMapProvider();
+    let searchControl = new GeoSearchControl({
+      provider: provider,
+      showMarker: true,                                 
+      showPopup: false,                                  
+      marker: {                                           
+        icon: new L.Icon.Default(),
+        draggable: false,
+      },
+      popupFormat: ({ query, result }) => result.label,  
+      maxMarkers: 1,                                     
+      retainZoomLevel: false,                            
+      animateZoom: true,                                  
+      autoClose: false,                                  
+      searchLabel: 'Enter address',                      
+      keepResult: false  
+    });
+    map.addControl(searchControl);
   }
 
   setCurrentPosition(lat, lng){
@@ -50,13 +76,10 @@ export class MapServiceService {
     let marker = L.marker([lat, long], {icon: icon == 'default' ? iconDefault : null, draggable: unicName == 'default-icon' ? 'true' : null});
     markerList && markerList[unicName] ? this.removeMarker(map, marker, unicName, markerList) : null;
     markerList[unicName] = marker;
-    // if(unicName == 'default-icon'){
-      
-    // }
     marker.on('moveend', () => {
       let coords = marker.getLatLng();
       this.geocoder.reverse({lat: coords.lat, lng: coords.lng}, 13, r => {
-        marker.bindPopup(this.checkAddressAtHouseNumber(r[0], unicName));
+        marker.bindPopup(this.checkAddressAtHouseNumber(r[0], unicName).value);
         map.flyTo([coords.lat, coords.lng], 17);
         unicName == 'default-icon' 
           ? this.currentPosition = {
@@ -68,23 +91,20 @@ export class MapServiceService {
       });
     });
     this.geocoder.reverse({lat: lat, lng: long}, 13, r => {
-      map.addLayer(markerList[unicName].bindPopup(this.checkAddressAtHouseNumber(r[0], unicName)));
+      map.addLayer(markerList[unicName].bindPopup(this.checkAddressAtHouseNumber(r[0], unicName).value));
       unicName == 'default-icon' ? this.currentPosition = {lat, long, address: r[0]} : null;
     });
     return {map, markerList}
   }
-  // getAddressBeCoords(map, lat, long, unicName){
-  //   this.geocoder.reverse({lat: lat, lng: long}, 13, r => {
-  //     map.addLayer(markerList[unicName].bindPopup( unicName == 'default-icon' ? 'Доставим сюда - '+r[0].name.split('Сумы')[0] + 'Сумы' : r[0].name.split('Сумы')[0] + 'Сумы')) 
-  //     console.log('result service', r);
-  //   });
-  // }
 
   checkAddressAtHouseNumber(add: any, unicName: string){
-    if (add.properties.address['house_number']) return `${add.properties.address.road}, ${add.properties.address.house_number}, ${add.properties.address.city}`
+    console.log('Selected address', add);
+    this.setCurrentPosition(add.center.lat, add.center.lng);
+    if(!add.properties.address['road'] && add.properties.address['house_number']) return {status: 3, value:`Улицу не знаем, но не переживай, знаем что дом - ${add.properties.address.house_number}!`};
+    else if (add.properties.address['house_number']) return {status: 1, value: `${add.properties.address.road}, ${add.properties.address.house_number}, ${add.properties.address.city}`}
     else {
-      if (add.name.split('Сумы')[0] == '') return `Адресс не определился, но мы доставим прямо в точку!`;
-      else return `${add.name.split('Сумы')[0]} Сумы`;
+      if (add.name.split('Сумы')[0] == '') return {status: 0,value: `Адресс не определился, но мы доставим прямо в точку!`};
+      else return {status: 2, value: `${add.name.split('Сумы')[0]} Сумы`};
     } 
   }
 
@@ -93,9 +113,9 @@ export class MapServiceService {
     map.removeLayer(marker);
     return {map, markerList}
   }
-
+ 
   addControl(map, element: string, nameIcon: string, color: string, bgColor: string, position, w: string, h: string, controlCallback){
-    let iconElement = document.createElement(element);
+    let iconElement = document.createElement(element); 
     iconElement.setAttribute('name', nameIcon);
     iconElement.setAttribute("style", `width: 100%; height: 100%; color: ${color}; background: ${bgColor}`);
 
@@ -112,7 +132,6 @@ export class MapServiceService {
     return {map}
   }
 
-  getCurrentPosition(){
-    return this.currentPosition;
-  }
+  getCurrentPosition(){ return this.currentPosition; }
+  getLastMarkerPosition() { return [this.lat, this.lng] }
 }

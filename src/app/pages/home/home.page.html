@@ -3,17 +3,20 @@
 </ion-header>
 
 <ion-content class="home">
-  <div class="form-wrapper">
+  <div class="form-wrapper" *ngIf="eater">
     <div class="address-data data">
       <div class="title">Доставим сюда:</div>
-      <ion-input class="custom-input" [(ngModel)]="address"></ion-input>
+      <div class="wrapper-for-address">
+        <ion-input class="custom-input" [(ngModel)]="eater.address" placeholder="Харьковская 44, Сумы"></ion-input>
+        <ion-icon class="find-icon" name="md-locate" (click)="changeAddress()"></ion-icon>
+      </div>
     </div>
     <div class="phone-data data">
       <div class="title">Как с тобой связаться?</div>
-      <ion-input type="number" class="custom-input" placeholder="+380 00 00 00 000"></ion-input>
+      <div class="wrapper-for-address"><ion-input [(ngModel)]="eater.phone" type="tel" class="custom-input" placeholder="+380 00 00 00 000"></ion-input></div>
     </div>
 
   </div>
-  <item-map class="map-1" appId="APP-ID-HERE" appCode="APP-CODE-HERE"></item-map>
-  <ion-button type="number" class="want-button">Да-да быстрее!</ion-button>
+  <item-map class="map-1" appId="APP-ID-HERE" appCode="APP-CODE-HERE" (addressEvent)="setAddress($event)"></item-map>
+  <ion-button type="number" class="want-button" (click)="nextStep()">Да-да быстрее!</ion-button>
 </ion-content>

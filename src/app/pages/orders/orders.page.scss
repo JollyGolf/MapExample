@@ -1,0 +1,52 @@
+@mixin flex($direction, $align, $justify){
+  display: flex;
+  @if $direction { flex-direction: $direction; }
+  @if $align { align-items: $align; }
+  @if $justify { justify-content: $justify; }
+}
+@mixin font($weight, $size, $color){
+  font-family: 'Montserrat';
+  @if $weight { font-weight: $weight; }
+  @if $size { font-size: $size; }
+  @if $color { color: $color }
+}
+
+.orders {
+  @include flex(column, center, center);
+  --background: #F5F5F5;
+  .category-order {
+    width: 100%;
+    @include flex(column, center, center);
+    .title {
+      @include font(700, 15pt, #3A1E02);
+      padding: 8px 0px 8px 0px;
+    }
+    .order {
+      width: 100%;
+      background-color: white;
+      @include flex(column, center, center);
+      padding: 8px 5% 8px 5%;
+      .row {
+        width: 100%;
+        @include flex(row, center, space-between);
+        padding: 5px 0px 5px 0px;
+        .date-r {
+          @include font(700, 9pt, #B3B3B3);
+        }
+        .title-r {
+          @include font(500, 11pt, #3A1E02);
+        }
+        .value-r {
+          @include font(500, 11pt, #3A1E02);
+        }
+        .title-p {
+          @include font(700, 11pt, #3A1E02);
+        }
+        .value-p {
+          @include font(700, 18pt, #6B9E50);
+        }
+      }
+    }
+  }
+}
+

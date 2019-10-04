@@ -1,0 +1,44 @@
+<ion-header>
+  <header></header>
+</ion-header>
+
+<ion-content class="payment">
+  <div class="wrapper-top" *ngIf="basket && basket.shawas">
+    <div class="row-h">
+      <div class="title-h">Шаурма</div>
+      <div class="count-h">Кол-во</div>
+      <div class="price-h">Цена</div>
+    </div>
+    <div class="row" *ngFor="let shawa of basket.shawas">
+      <div class="title">{{shawa.name}}</div>
+      <div class="count">{{shawa.count}}</div>
+      <div class="price">{{shawa.price}}</div>
+    </div>
+  </div>
+  
+  <div class="wrapper-bottom">
+    <div class="select-payment" *ngIf="basket">
+      <div class="price-payment">
+        <div class="title-value">Цена с доставкой:</div>
+        <div class="price-value">{{basket.price}}</div>
+      </div>
+      <div class="select-type-payment">
+        <ion-list>
+          <ion-radio-group [(ngModel)]="paymentType">
+            <ion-item>
+              <ion-label>Наличные</ion-label>
+              <ion-radio slot="start" value="cash"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Карта</ion-label>
+              <ion-radio slot="start" value="banking" checked></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </div>
+    </div>
+    <div class="wrapper-button">
+      <ion-button class="want-button" (click)="nextStep()">Шаву! Быстрее!</ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { OrdersPage } from './orders.page';
 
-import { SelectShavaPage } from './select-shava.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: SelectShavaPage
+    component: OrdersPage
   }
 ];
 
@@ -22,6 +22,6 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SelectShavaPage]
+  declarations: [OrdersPage]
 })
-export class SelectShavaPageModule {}
+export class OrdersPageModule {}

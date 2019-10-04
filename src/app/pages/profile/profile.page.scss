@@ -1,0 +1,53 @@
+@mixin flex($direction, $align, $justify){
+  display: flex;
+  @if $direction { flex-direction: $direction; }
+  @if $align { align-items: $align; }
+  @if $justify { justify-content: $justify; }
+}
+@mixin font($weight, $size, $color){
+  font-family: 'Montserrat';
+  @if $weight { font-weight: $weight; }
+  @if $size { font-size: $size; }
+  @if $color { color: $color }
+}
+
+.profile {
+    --padding-top: 20px;
+    .data {
+        margin: 0px 5% 0px 5%;
+        .title {
+            margin-top: 7px;
+            padding-left: 20px;
+            @include font(800, 9pt, #3A1E02);
+        }
+        .wrapper-for-input {
+            @include flex(row, center, space-between);
+            margin: 5px 0px 10px 0px;
+            .custom-input {
+                --padding-start: 20px;
+                --padding-end: 20px;
+                background: #F5F5F5;
+                border-radius: 10pt;
+                @include font(700, 12pt, #3A1E02);
+            }
+            .find-icon {
+                font-size: 30pt;
+                color: #db5400;//#FF8800;
+                margin-left: 10px;
+            }
+        } 
+    }
+    .want-button {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+        margin: 0px 5% 20px 5%;
+        --background: linear-gradient(180deg, #FEC253, #FF8800);
+        --background-activated:  #FF8800; 
+        --border-radius: 30pt;
+        border-radius: 30px;
+        height: 66px;
+        box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.14);
+        @include font(700, 22pt, whtie);
+    }
+}

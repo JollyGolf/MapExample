@@ -16,7 +16,7 @@ export class RepeatMessagePage implements OnInit {
   }
 
   nextStep(){
-    this.navCtrl.navigateForward('menu/home');
+    this.navCtrl.navigateRoot('menu/home');
   }
   prevStep(){
     this.navCtrl.navigateForward('menu/select-shava');

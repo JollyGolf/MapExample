@@ -6,24 +6,12 @@
 
 <ion-content class="select-shava">
   <div class="custom-slider">
-    <ion-slides (ionSlideTap)="slideTap($event)" [options]="slideOpts" class="slider-wrapper">
-      <ion-slide class="slide-item">
-        <div class="title-shava">Шаурма такая-то 1</div>
-        <img class="image-shava" src="../../../assets/icon/Kebab.png">
-        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
-        <div class="weight-shava">600г</div>
-      </ion-slide> 
-      <ion-slide class="slide-item">
-        <div class="title-shava">Шаурма такая-то 2</div>
-        <img class="image-shava" src="../../../assets/icon/Kebab.png">
-        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
-        <div class="weight-shava">300г</div>
-      </ion-slide>
-      <ion-slide class="slide-item">
-        <div class="title-shava">Шаурма такая-то 3</div>
-        <img class="image-shava" src="../../../assets/icon/Kebab.png">
-        <div class="desc-shava">Состав состав состав состав состав состав состав состав состав состав состав состав состав</div>
-        <div class="weight-shava">400г</div>
+    <ion-slides (ionSlideDidChange)="slideChanged()" (ionSlideTap)="slideTap($event)" [options]="slideOpts" class="slider-wrapper">
+      <ion-slide class="slide-item" *ngFor="let shawa of shawas">
+        <div class="title-shava">{{shawa.name}}</div>
+        <img class="image-shava" src="{{shawa.img}}">
+        <div class="desc-shava">{{shawa.description}}</div>
+        <div class="weight-shava">{{shawa.price}} грн</div>
       </ion-slide>
     </ion-slides>
     <div class="slide-back" (click)="slideBack()"><ion-icon name="ios-arrow-back"></ion-icon></div>

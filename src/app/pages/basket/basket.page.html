@@ -1,0 +1,44 @@
+<ion-header>
+  <header></header>
+</ion-header>
+
+<ion-content class="basket">
+  <div class="wrapper-for-top" *ngIf="basket && basket.shawas">
+    <div class="title">Ваша корзина{{ !basket.shawas.length ? ' пуста' : null}}</div>
+    <div class="basket-item" *ngFor="let shawa of basket.shawas">
+      <div class="header-row">
+        <div class="title">{{shawa.name}}</div>
+        <div class="close-button"><ion-icon name="close" (click)="removeItem(shawa)"></ion-icon></div>
+      </div>
+      <div class="wrapper-for-details">
+        <div class="detail-count">
+          <div class="title">Количество:</div>
+          <div class="forming-count">
+            <div class="count-control" (click)="generateCount(shawa.id, shawa.count, '-')">
+              <div class="control-bg"></div>
+              <div class="control-content">-</div>
+            </div>
+            <div class="count-value">{{shawa.count}}</div>
+            <div class="count-control" (click)="generateCount(shawa.id, shawa.count, '+')">
+              <div class="control-bg"></div>
+              <div class="control-content">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-price">
+          <div class="title">Цена за одну:</div>
+          <div class="price-value">{{shawa.price}} грн</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-for-bottom">
+    <div class="summary-price" *ngIf="basket && basket.price">
+      <div class="title">Цена с доставкой:</div>
+      <div class="value">{{basket.price}} грн</div>
+    </div>
+    <div class="wrapper-for-button">
+      <ion-button class="want-button" (click)="nextStep(button.way)">{{button.status}}</ion-button>
+    </div>
+  </div>
+</ion-content>

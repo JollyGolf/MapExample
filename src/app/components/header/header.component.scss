@@ -5,7 +5,6 @@
     &:last-child{
         --border-width: 0;
     }
-
     .start{
         margin-inline-start: 0px;
         .menu-button{
@@ -17,7 +16,7 @@
             width: 50px;
             height: 40px;
             padding-right: 10px;
-            .a{
+            .a {
                 fill: #fff !important
             }
         }
@@ -35,13 +34,44 @@
     }
     .title{
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
         box-sizing: border-box;
         font-family: 'Montserrat';
         font-weight: 600;
         color: white;
         font-size: 15pt;
+        .basket {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 10px;
+            .basket-item {
+              position: absolute;
+              z-index: 10;
+            }
+            .counter-item {
+                position: absolute;
+                z-index: 20;
+                height: 18px;
+                width: 18px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #F54D3E;
+                border-radius: 50%;
+                border: 1.5px solid white;
+                font-size: 8pt;
+                bottom: 5px;
+                right: 0;
+                font-weight: 700;
+            }
+        }
     }
 }
 

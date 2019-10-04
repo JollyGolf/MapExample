@@ -1,0 +1,139 @@
+@mixin flex($direction, $align, $justify){
+  display: flex;
+  @if $direction { flex-direction: $direction; }
+  @if $align { align-items: $align; }
+  @if $justify { justify-content: $justify; }
+}
+@mixin font($weight, $size, $color){
+  font-family: 'Montserrat';
+  @if $weight { font-weight: $weight; }
+  @if $size { font-size: $size; }
+  @if $color { color: $color }
+}
+
+.basket {
+  .wrapper-for-top {
+    width: 100%;
+    min-height: 70%;
+    height: fit-content;
+    background-color: #F5F5F5;
+    @include flex(column, center, false);
+    .title {
+      @include font(700, 16pt, #3A1E02);
+      padding: 10px 0px 10px 0px;
+    }
+    .basket-item {
+      width: 100%;
+      background-color: white;
+      margin-bottom: 6px;
+      .header-row {
+        @include flex(row, center, space-between);
+        .title {
+          padding-left: 15px;
+          padding-right: 8px;
+          @include font(500, 12pt, #3A1E02);
+        }
+        .close-button {
+          ion-icon {
+            font-size: 35pt;
+            color: #B3B3B3;
+            // padding: 10px
+          }
+        }
+      }
+      .wrapper-for-details {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        @include flex(row, center, space-between);
+        .detail-count {
+          width: 50%;
+          @include flex(column, center, false);
+          .title { @include font(800, 9pt, #3A1E02); }
+          .forming-count {
+            width: 100%;
+            margin: 5px 0px 15px 0px;
+            @include flex(row, center, space-around);
+            .count-control {
+              @include flex(row, center, center);
+              .control-bg {
+                background: #F5F5F5;
+                position: absolute;
+                z-index: 10;
+                padding: 20px;
+                border-radius: 10px;
+              }
+              .control-content {
+                position: absolute;
+                z-index: 11;
+                @include font(800, 30pt, #B3B3B3);
+              }
+            }
+            .count-value { @include font(800, 22pt, #3A1E02); }
+          }
+        }
+        .detail-price {
+          width: 50%;
+          @include flex(column, center, space-around);
+          .title {
+            @include font(800, 9pt, #3A1E02);
+          }
+          .price-value {
+            margin: 5px 0px 15px 0px;
+            @include font(700, 16pt, #6B9E50);
+          }
+        }
+      }   
+    }
+  }
+  .wrapper-for-bottom {
+    background-color: #F5F5F5;
+    height: 30%;
+    @include flex(column, center, flex-end);
+    .summary-price {
+      width: 100%;
+      @include flex(row, center, space-between);
+      padding: 20px 7% 20px 7%;
+      .title {
+        @include font(800, 9pt, #3A1E02);
+      }
+      .value {
+        @include font(700, 22pt, #6B9E50);
+      }
+    }
+    .wrapper-for-button {
+      width: 100%;
+      background-color: white;
+      .want-button {
+        width: 90%;
+        margin: 20px 5% 10px 5%;
+        --background: linear-gradient(180deg, #FEC253, #FF8800);
+        --background-activated:  #FF8800; 
+        --border-radius: 30pt;
+        border-radius: 30px;
+        height: 66px;
+        box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.14);
+        @include font(700, 22pt, whtie);
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+// .want-button {
+//     width: 90%;
+//     margin: 0px 5% 10px 5%;
+//     --background: linear-gradient(180deg, #FEC253, #FF8800);
+//     --background-activated:  #FF8800; 
+//     --border-radius: 30pt;
+//     border-radius: 30px;
+//     height: 66px;
+//     box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.14);
+//     @include font(700, 22pt, whtie);
+//   }

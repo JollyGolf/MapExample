@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController, IonSlides } from '@ionic/angular';
+import { Observable, Subscription } from 'rxjs';
+import { FirebaseService, Shawarma } from 'src/app/services/firebase.service';
+import { TrivialService } from 'src/app/services/trivial.service';
+import { BasketService } from 'src/app/services/basket.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-select-shava', 
@@ -8,36 +13,66 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./select-shava.page.scss'],
 })
 export class SelectShavaPage implements OnInit {
+  
   @ViewChild(HeaderComponent, null) header: HeaderComponent;
+  @ViewChild(IonSlides, null) slides: IonSlides;
+  initialIndex: number = 0;
+  activeIndex: number;
+  finalIndex: number;
+  shawas: Shawarma[];
   slideOpts = {
-    initialSlide: 1,
+    initialSlide: this.initialIndex,
     speed: 400 
   };
   counter: number = 1;
-  oneOf: number = 50;
-  price: number = this.oneOf * this.counter + 25;
-  constructor(private navCtrl: NavController) { }
+  oneOf: number;
+  price: number;
+  firebaseSubscription: Subscription;
+
+  constructor(
+    private navCtrl: NavController,
+    private firebase: FirebaseService,
+    private toastCtrl: ToastController,
+    private trivial: TrivialService,
+    private basket: BasketService,
+    private profileService: ProfileService
+  ) { }
 
   ngOnInit() {
+    console.log('ngOnInit');
     this.header.setHeaderTitle('Шаг 1: Выбери');
+    this.profileService.getEaterById('1CWZ47aPYC59JJ3J4nO8').subscribe(e => this.profileService.setEater(e));
   }
 
   ionViewWillEnter(){
+    console.log('ionViewWillEnter');
+    localStorage.removeItem('eater-geoposition');
     this.counter = 1;
-    this.oneOf = 50;
-    this.price = this.oneOf * this.counter + 25;
+    this.getShawas();
+    this.header.setCountBasketItem();
   }
 
-  slideBack(){
-    console.log('back', this);
+  getShawas(){
+    this.firebaseSubscription = this.firebase.getShawas().subscribe(items => {
+      this.shawas = items;
+      this.trivial.showToast('Данные с firebase получены.', 1000);
+      console.log('Get shawas =>', items);
+      this.changeFinnalyCost(this.shawas[this.initialIndex].price, this.shawas[this.initialIndex].price * this.counter + 25);
+      this.finalIndex = this.shawas.length-1;
+      this.slides.getActiveIndex().then(index => this.activeIndex = index);
+    });
   }
 
-  slideForward(){
-    console.log('forward');
+  slideChanged(){
+    this.slides.getActiveIndex().then(index => {
+      this.changeFinnalyCost(this.shawas[index].price, this.shawas[index].price * this.counter + 25);
+      this.activeIndex = index;
+    })
   }
 
-  slideTap(event){
-    console.log(event);
+  changeFinnalyCost(oneOf, price){
+    this.oneOf = oneOf;
+    this.price = price;
   }
 
   generateCount(type: '+'|'-'){
@@ -49,11 +84,40 @@ export class SelectShavaPage implements OnInit {
       if (this.counter == 0) return;
       this.counter--;
       this.price = this.counter ? this.oneOf * this.counter + 25 : 0;
-
+    }
+  }
+  slideTap(){ }
+  slideBack(){
+    if(this.activeIndex > this.initialIndex){
+      this.slides.slideTo(this.activeIndex - 1);
+    }
+    else if(this.activeIndex == this.initialIndex){
+      this.trivial.showToast('Это и так самый первый слайд!', 1000);
+    }
+  }
+  slideForward(){
+    if(this.activeIndex < this.finalIndex){
+      this.slides.slideTo(this.activeIndex + 1);
+    }
+    else if(this.activeIndex == this.finalIndex){
+      this.trivial.showToast('Это уже самый последний слайд!', 1000);
     }
   }
   
   nextStep(){
+    let {id, name, price} = this.shawas[this.activeIndex];
+    this.basket.addItem({
+      id,
+      name,
+      price,
+      count: this.counter
+    });
+    this.header.setCountBasketItem();
     this.navCtrl.navigateForward('menu/repeat-message');
   }
+
+  ionViewDidLeave(){
+    this.firebaseSubscription.unsubscribe();
+  }
+
 }

@@ -42,8 +42,12 @@
                 top: 0;
                 @include font(700, 15pt, #3A1E02);
             }
+            .image-shava {
+                max-height: 330px;
+            }
             .desc-shava {
-                margin-top: -25px;
+                margin-top: -15px;
+                padding: 0px 5% 0px 5%;
                 @include font(400, 9pt, #3A1E02);
             }
             .weight-shava {
@@ -58,7 +62,7 @@
         margin-right: 5%;
         @include flex(row, center, space-between);
         .detail-count {
-            margin: 30px 10px 10px 10px;
+            margin: 10px;
             width: 50%;
             @include flex(column, center, false);
             .title {
@@ -90,7 +94,7 @@
             }
         }
         .detail-price {
-            margin: 30px 10px 10px 10px;
+            margin: 10px;
             width: 50%;
             @include flex(column, center, space-around);
             .title {

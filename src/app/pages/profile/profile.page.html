@@ -1,0 +1,25 @@
+<ion-header>
+  <header></header>
+</ion-header>
+
+<ion-content class="profile" *ngIf="profile">
+  <div class="phone-data data">
+    <div class="title">Адрес</div>
+    <div class="wrapper-for-input">
+      <ion-input [(ngModel)]="profile.address" type="text" class="custom-input" placeholder="куда чаще всего ты будешь заказывать"></ion-input>
+    </div>
+  </div>
+  <div class="phone-data data">
+    <div class="title">Как с тобой связаться?</div>
+    <div class="wrapper-for-input">
+      <ion-input [(ngModel)]="profile.phone" type="tel" class="custom-input" placeholder="+380 00 00 00 000"></ion-input>
+    </div>
+  </div>
+  <div class="phone-data data">
+    <div class="title">Твое имя</div>
+    <div class="wrapper-for-input">
+      <ion-input [(ngModel)]="profile.name" type="text" class="custom-input" placeholder="Введите имя"></ion-input>
+    </div>
+  </div>
+  <ion-button (click)="saveData()" class="want-button">Сохранить</ion-button>
+</ion-content>

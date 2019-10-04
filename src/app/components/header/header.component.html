@@ -3,11 +3,7 @@
     <ion-menu-toggle auto-hide="false" class="menu-button" *ngIf="showMenu">
       <svg xmlns="http://www.w3.org/2000/svg" width="22.948" height="23.905" viewBox="0 0 22.948 23.905">
         <defs>
-          <style>
-            .a {
-              fill: #fff;
-            }
-          </style>
+          <style>.a {fill: #fff;}</style>
         </defs>
         <g transform="translate(0 0)">
           <path class="a"
@@ -26,7 +22,35 @@
     <ion-icon name="arrow-back"></ion-icon>
   </ion-button> -->
   </ion-buttons>
-  <p class="title">
-    {{title}}
-  </p>
+  <div class="title">
+    <div></div>
+    <div>{{title}}</div>
+    <div class="basket" (click)="openBasket()">
+      <svg class="basket-item" xmlns="http://www.w3.org/2000/svg" width="48.383" height="32.448" viewBox="0 0 48.383 32.448">
+        <g id="Group_7" data-name="Group 7" transform="translate(-300 -9)">
+          <g id="Group_6" data-name="Group 6" transform="translate(312.526 9)">
+            <g id="Group_5" data-name="Group 5" transform="translate(2.349 1.174)">
+              <line id="Line_1" data-name="Line 1" y1="7.829" transform="translate(0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+              <line id="Line_2" data-name="Line 2" y1="7.829" transform="translate(19.572)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+            </g>
+            <rect id="Rectangle_17" data-name="Rectangle 17" width="24.269" height="3.131" rx="1.566" fill="#fff"/>
+          </g>
+          <g id="_1720616" data-name="1720616" transform="translate(300 17.611)">
+            <path id="Path_22" data-name="Path 22" d="M51.5,247.523H30.164l2.7,15.563a4.245,4.245,0,0,0,4.182,3.519H65.961a4.244,4.244,0,0,0,4.182-3.519l2.7-15.563Zm0,0" transform="translate(-27.314 -242.767)" fill="#fed54d"/>
+            <path id="Path_24" data-name="Path 24" d="M47.9,201.954H.487A.487.487,0,0,1,0,201.467v-3.781a.487.487,0,0,1,.487-.487H47.9a.487.487,0,0,1,.487.487v3.781A.487.487,0,0,1,47.9,201.954Zm0,0" transform="translate(0 -197.199)" fill="#fff"/>
+            <g id="Group_4" data-name="Group 4" transform="translate(9.258 8.651)">
+              <path id="Path_28" data-name="Path 28" d="M100.575,300.055a.732.732,0,0,0,.719-.868l-1.878-9.842a.731.731,0,1,0-1.436.274l1.878,9.842A.732.732,0,0,0,100.575,300.055Zm0,0" transform="translate(-97.966 -288.751)" fill="#fff"/>
+              <path id="Path_29" data-name="Path 29" d="M196.4,300.056l.062,0a.731.731,0,0,0,.667-.789l-.822-9.842a.731.731,0,1,0-1.457.122l.822,9.842A.731.731,0,0,0,196.4,300.056Zm0,0" transform="translate(-185.696 -288.752)" fill="#fff"/>
+              <path id="Path_30" data-name="Path 30" d="M379.422,300.056a.732.732,0,0,0,.717-.594l1.878-9.842a.731.731,0,1,0-1.436-.274l-1.878,9.842a.733.733,0,0,0,.719.868Zm0,0" transform="translate(-352.162 -288.751)" fill="#fff"/>
+              <path id="Path_31" data-name="Path 31" d="M293.716,300.056a.731.731,0,0,0,.728-.67l.822-9.842a.731.731,0,0,0-1.457-.121l-.822,9.842a.73.73,0,0,0,.667.789Zm0,0" transform="translate(-274.556 -288.752)" fill="#fff"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div class="counter-item" *ngIf="countBasketItem">
+        {{countBasketItem}}
+      </div>
+    </div>
+  </div>
+  
 </ion-toolbar>
